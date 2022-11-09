@@ -24,6 +24,7 @@ async function run(){
     try{
 
         const categoryCollection = client.db('brightPhotography').collection('category')
+        const reviewCollection  = client.db('brightPhotography').collection('review')
 
         app.get('/category',async (req,res)=>{
             const query = {};
@@ -39,6 +40,14 @@ async function run(){
             const query = {_id:ObjectId(id)}
             const service = await categoryCollection.findOne(query)
             res.send(service)
+        })
+
+
+        app.post('/review',async (req,res)=>{
+            const order = req.body;
+            const result = await reviewCollection.insertOne(order);
+            res.send(result)
+
         })
     }
 
