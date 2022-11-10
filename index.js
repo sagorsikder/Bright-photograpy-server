@@ -33,6 +33,7 @@ async function run(){
             res.send(category);
         })
 
+        // homopage category
         app.get('/minicategory',async (req,res)=>{
             const query = {};
             const cursor = categoryCollection.find(query)
@@ -41,7 +42,7 @@ async function run(){
         })
 
 
-        
+        // service section
         app.get('/services/:id',async (req,res)=>{
             const id = req.params.id;
             const query = {_id:ObjectId(id)}
@@ -50,6 +51,7 @@ async function run(){
         })
 
 
+        // review section
         app.post('/review',async (req,res)=>{
             const review = req.body;
             const result = await reviewCollection.insertOne(review);
