@@ -33,6 +33,13 @@ async function run(){
             res.send(category);
         })
 
+        app.get('/minicategory',async (req,res)=>{
+            const query = {};
+            const cursor = categoryCollection.find(query)
+            const category = await cursor.limit(3).toArray()
+            res.send(category);
+        })
+
 
         
         app.get('/services/:id',async (req,res)=>{
@@ -53,9 +60,6 @@ async function run(){
 
 
         app.get('/myreview',async(req,res)=>{
-
-           
-            
             let query = {};
             
             if(req.query.email){
@@ -67,6 +71,7 @@ async function run(){
             console.log(req.query.email)
             const cursor = reviewCollection.find(query)
             const review = await cursor.toArray()
+            console.log(review)
             res.send(review)
 
         })
